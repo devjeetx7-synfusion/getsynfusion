@@ -167,11 +167,34 @@
       stroke-width: 2;
     }
 
-    /* Brand Logo Elements */
+    /* Brand Logo Elements - Circular Treatment */
+    .brand-logo-frame {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+    .brand-logo-frame-nav {
+      width: 44px;
+      height: 44px;
+      padding: 6px;
+    }
+    .brand-logo-frame-footer {
+      width: 72px;
+      height: 72px;
+      padding: 10px;
+      background: var(--color-cream-light);
+      border: 2px solid var(--color-border);
+    }
     .brand-logo-img {
-      height: 38px;
-      width: auto;
-      max-width: 170px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
     }
@@ -578,16 +601,21 @@
       margin-bottom: 16px;
     }
     .app-icon-lg {
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
       border-radius: var(--radius-md);
-      background: var(--color-cream);
+      background: var(--color-bg-alt);
       border: 1px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-emerald);
+      overflow: hidden;
+      display: block;
       flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .app-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .app-title-lg {
       font-size: 1.85rem;
@@ -625,7 +653,7 @@
       color: var(--color-text);
     }
 
-    /* Smartphone Device Mockup Aspect Ratio: 9 / 19.5 */
+    /* Minimalist Smartphone Device Mockup (Aspect Ratio: 9 / 19.5) */
     .mockup-container {
       display: flex;
       justify-content: center;
@@ -634,49 +662,42 @@
     }
     .phone-mockup {
       width: 100%;
-      max-width: 250px;
+      max-width: 240px;
       aspect-ratio: 9 / 19.5;
-      background: #090E0B;
+      background: #121F16;
       border: 8px solid #1B2920;
       border-radius: 36px;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(20, 90, 50, 0.08);
       position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      display: block;
     }
-    .phone-notch {
-      width: 80px;
-      height: 16px;
-      background: #1B2920;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+    [data-theme="dark"] .phone-mockup {
+      border-color: #27382D;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
-    .notch-camera {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #090E0B;
+    .phone-mockup-sm {
+      max-width: 180px;
+      border-width: 6px;
+      border-radius: 28px;
     }
     .phone-screen {
-      flex: 1;
-      background: #FFFFFF;
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding-top: 24px;
+      background: var(--color-bg-alt);
+      display: block;
     }
-    [data-theme="dark"] .phone-screen {
-      background: #0F1612;
+    .phone-mockup-sm .phone-screen {
+      border-radius: 20px;
+    }
+    .phone-screen-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
     }
 
     /* Secondary Apps Grid */
@@ -707,16 +728,15 @@
       margin-bottom: 20px;
     }
     .app-icon-md {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: var(--radius-md);
-      background: var(--color-cream);
+      background: var(--color-bg-alt);
       border: 1px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-emerald);
+      overflow: hidden;
+      display: block;
       flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
     }
     .app-title-md {
       font-size: 1.35rem;
@@ -1179,6 +1199,9 @@
       .secondary-apps-grid {
         grid-template-columns: 1fr;
       }
+      .secondary-app-card > div {
+        grid-template-columns: 1fr !important;
+      }
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1241,7 +1264,10 @@
   <header class='navbar-wrapper'>
     <div class='container navbar-container'>
       <a class='navbar-logo' href='#home'>
-        <img alt='SynFusion' class='brand-logo-img' height='38' loading='eager' src='https://i.postimg.cc/7PNN0DMg/file-000000006e788243a3aaf94a91b6f9db.png' width='160' />
+        <div class='brand-logo-frame brand-logo-frame-nav'>
+          <img alt='SynFusion' class='brand-logo-img' height='44' loading='eager' src='https://i.postimg.cc/7PNN0DMg/file-000000006e788243a3aaf94a91b6f9db.png' width='44' />
+        </div>
+        <span style='font-size: 1.25rem; font-weight: 850; letter-spacing: -0.02em; color: var(--color-text);'>SynFusion</span>
       </a>
 
       <nav class='navbar-links' id='navbarLinks'>
@@ -1311,7 +1337,7 @@
                 </div>
                 <div class='badge-text'>
                   <span class='badge-title'>NCERT eBooks</span>
-                  <span class='badge-sub'>14067+ Downloads</span>
+                  <span class='badge-sub'>5K+ Downloads &#183; ★ 3.7</span>
                 </div>
               </div>
 
@@ -1322,7 +1348,7 @@
                 </div>
                 <div class='badge-text'>
                   <span class='badge-title'>CinePrompt</span>
-                  <span class='badge-sub'>AI Visual Prompts</span>
+                  <span class='badge-sub'>100+ Downloads &#183; ★ 5.0</span>
                 </div>
               </div>
             </div>
@@ -1335,19 +1361,19 @@
         <div class='container stats-grid'>
           <div class='stat-card'>
             <span class='stat-number'>3</span>
-            <span class='stat-label'>Apps</span>
+            <span class='stat-label'>Android Apps</span>
           </div>
           <div class='stat-card'>
-            <span class='stat-number'>15,540+</span>
-            <span class='stat-label'>Combined Minimum Downloads</span>
-          </div>
-          <div class='stat-card'>
-            <span class='stat-number'>14067+</span>
+            <span class='stat-number'>5K+</span>
             <span class='stat-label'>Across SynFusion Apps</span>
           </div>
           <div class='stat-card'>
-            <span class='stat-number'>Android</span>
-            <span class='stat-label'>Google Play Store</span>
+            <span class='stat-number'>&#9733; 4.2</span>
+            <span class='stat-label'>Weighted User Rating</span>
+          </div>
+          <div class='stat-card'>
+            <span class='stat-number'>Google Play</span>
+            <span class='stat-label'>Official Platform</span>
           </div>
         </div>
       </section>
@@ -1370,10 +1396,10 @@
               </span>
               <div class='featured-app-header'>
                 <div class='app-icon-lg'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 28px; height: 28px;'><path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20'/></svg>
+                  <img alt='NCERT eBooks 6th–12th Icon' class='app-icon-img' height='64' loading='lazy' src='https://play-lh.googleusercontent.com/Kisu5DHPZEvfButHCCpdrD9lRxpRC4gblog-SrM8nX8rD_zIuaR09LmpzFIj991IBvIjRVI7POOnKWLdfoiu=s256' width='64' />
                 </div>
                 <div>
-                  <h3 class='app-title-lg'>NCERT eBooks 6th–12th (Hindi)</h3>
+                  <h3 class='app-title-lg'>NCERT eBooks 6th–12th</h3>
                   <span class='app-cat-tag'>Education &#183; Books &amp; Reference</span>
                 </div>
               </div>
@@ -1382,11 +1408,11 @@
               <div class='featured-meta-row'>
                 <div class='meta-stat-item'>
                   <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 18px; height: 18px; color: var(--color-emerald);'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' x2='12' y1='15' y2='3'/></svg>
-                  <span>14067+ Downloads</span>
+                  <span>5K+ Downloads</span>
                 </div>
                 <div class='meta-stat-item'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 18px; height: 18px; color: var(--color-text-muted);'><circle cx='12' cy='12' r='10'/><line x1='12' x2='12' y1='8' y2='12'/><line x1='12' x2='12.01' y1='16' y2='16'/></svg>
-                  <span>Not rated yet</span>
+                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 18px; height: 18px; color: #F59E0B;'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>
+                  <span>★ 3.7 (40 Reviews)</span>
                 </div>
               </div>
 
@@ -1399,27 +1425,8 @@
             <!-- Smartphone Device Mockup with aspect-ratio: 9 / 19.5 -->
             <div class='mockup-container'>
               <div class='phone-mockup'>
-                <div class='phone-notch'>
-                  <div class='notch-camera'></div>
-                </div>
                 <div class='phone-screen'>
-                  <div style='background: #145A32; color: #FFFFFF; padding: 14px; text-align: center; font-weight: 800; font-size: 0.8rem;'>
-                    NCERT Books 6th–12th
-                  </div>
-                  <div style='padding: 16px; display: flex; flex-direction: column; gap: 12px; background: #FAF9F5; flex: 1;'>
-                    <div style='background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; display: flex; items-center; gap: 10px;'>
-                      <div style='width: 32px; height: 40px; background: #2E7D32; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 800;'>6</div>
-                      <div style='font-size: 0.75rem; font-weight: 700; color: #1E293B;'>Class 6 NCERT Books</div>
-                    </div>
-                    <div style='background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; display: flex; items-center; gap: 10px;'>
-                      <div style='width: 32px; height: 40px; background: #2E7D32; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 800;'>10</div>
-                      <div style='font-size: 0.75rem; font-weight: 700; color: #1E293B;'>Class 10 NCERT Books</div>
-                    </div>
-                    <div style='background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; display: flex; items-center; gap: 10px;'>
-                      <div style='width: 32px; height: 40px; background: #2E7D32; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 800;'>12</div>
-                      <div style='font-size: 0.75rem; font-weight: 700; color: #1E293B;'>Class 12 NCERT Books</div>
-                    </div>
-                  </div>
+                  <img alt='NCERT eBooks App Screenshot' class='phone-screen-img' height='520' loading='lazy' src='https://play-lh.googleusercontent.com/9Zl3-EXyeDy44KvdrWjfj2ZUiUo0HNypPKHR50TGgoNWn4ZdS6eBFCjrWgRuptsIq1BTMrfozuojZSSTlbnp8w0=w1052-h592' width='240' />
                 </div>
               </div>
             </div>
@@ -1429,56 +1436,86 @@
           <div class='secondary-apps-grid'>
             <!-- APP 2: CinePrompt -->
             <div class='secondary-app-card'>
-              <div class='card-top'>
-                <div class='app-icon-md'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 24px; height: 24px;'><path d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/></svg>
+              <div style='display: grid; grid-template-columns: 1fr 140px; gap: 20px; align-items: center;'>
+                <div class='card-main-info'>
+                  <div class='card-top'>
+                    <div class='app-icon-md'>
+                      <img alt='CinePrompt Icon' class='app-icon-img' height='52' loading='lazy' src='https://play-lh.googleusercontent.com/6CHww2hgH9VViWgxv-ldO65NFPuQPG9U_d_Ws-4CRA31jkAcJ77IfME48U3nGdgibk_c9Be36aGLoKx-zxzDgQ=s256' width='52' />
+                    </div>
+                    <div>
+                      <h4 class='app-title-md'>CinePrompt</h4>
+                      <span class='app-cat-tag'>AI &#183; Entertainment</span>
+                    </div>
+                  </div>
+                  <p class='card-desc'>Discover trending AI image prompts for cinematic, realistic, anime, fantasy and creative visuals.</p>
+
+                  <div class='card-meta'>
+                    <div class='meta-stat-item'>
+                      <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: var(--color-emerald);'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' x2='12' y1='15' y2='3'/></svg>
+                      <span>100+ Downloads</span>
+                    </div>
+                    <div class='meta-stat-item'>
+                      <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: #F59E0B;'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>
+                      <span>★ 5.0 (13 Reviews)</span>
+                    </div>
+                  </div>
+
+                  <a class='btn btn-secondary' href='https://play.google.com/store/apps/details?id=com.synfusion.cineprompt' rel='noopener noreferrer' target='_blank'>
+                    <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px;'><polygon points='5 3 19 12 5 21 5 3'/></svg>
+                    <span>Google Play</span>
+                  </a>
                 </div>
-                <div>
-                  <h4 class='app-title-md'>CinePrompt</h4>
-                  <span class='app-cat-tag'>AI &#183; Entertainment</span>
+
+                <div class='mockup-container'>
+                  <div class='phone-mockup phone-mockup-sm'>
+                    <div class='phone-screen'>
+                      <img alt='CinePrompt App Screenshot' class='phone-screen-img' height='390' loading='lazy' src='https://play-lh.googleusercontent.com/KL3N8vN6F0uZaNaNeBZjVIMU9PItDpt41cSlYEXiMAxdnqBSxpCegxv-jHElXdiYHnIng4zFcTrxoDIHK5mXDg0=w1052-h592' width='180' />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p class='card-desc'>Discover trending AI image prompts for cinematic, realistic, anime, fantasy and creative visuals.</p>
-
-              <div class='card-meta'>
-                <div class='meta-stat-item'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: var(--color-emerald);'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' x2='12' y1='15' y2='3'/></svg>
-                  <span>920+ Downloads</span>
-                </div>
-                <span>Not rated yet</span>
-              </div>
-
-              <a class='btn btn-secondary' href='https://play.google.com/store/apps/details?id=com.synfusion.cineprompt' rel='noopener noreferrer' target='_blank'>
-                <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px;'><polygon points='5 3 19 12 5 21 5 3'/></svg>
-                <span>Google Play</span>
-              </a>
             </div>
 
             <!-- APP 3: SketchPro Color -->
             <div class='secondary-app-card'>
-              <div class='card-top'>
-                <div class='app-icon-md'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 24px; height: 24px;'><circle cx='13.5' cy='6.5' r='.5'/><circle cx='17.5' cy='10.5' r='.5'/><circle cx='8.5' cy='7.5' r='.5'/><circle cx='6.5' cy='12.5' r='.5'/><path d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.72 1.7-1.65 0-.41-.16-.79-.42-1.07a1.6 1.6 0 0 1 .42-2.68c.92 0 1.7-.72 1.7-1.65 0-.42-.16-.79-.42-1.07a1.6 1.6 0 0 1 .42-2.68c.92 0 1.7-.72 1.7-1.65 0-.93-.78-1.65-1.7-1.65H12Z'/></svg>
+              <div style='display: grid; grid-template-columns: 1fr 140px; gap: 20px; align-items: center;'>
+                <div class='card-main-info'>
+                  <div class='card-top'>
+                    <div class='app-icon-md'>
+                      <img alt='SketchPro Color Icon' class='app-icon-img' height='52' loading='lazy' src='https://play-lh.googleusercontent.com/-MaaVUiKp7cu81b9o8zhq0L4hgMBnSJwEXhgO4CRQ_ZO4lwUqVkJGuxvQ1NCdsMOEwmG_1q5pYD2wjW-Bkc8=s256' width='52' />
+                    </div>
+                    <div>
+                      <h4 class='app-title-md'>SketchPro Color</h4>
+                      <span class='app-cat-tag'>Art &amp; Design</span>
+                    </div>
+                  </div>
+                  <p class='card-desc'>Create, explore and manage color palettes, mixed colors and smooth gradients.</p>
+
+                  <div class='card-meta'>
+                    <div class='meta-stat-item'>
+                      <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: var(--color-emerald);'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' x2='12' y1='15' y2='3'/></svg>
+                      <span>100+ Downloads</span>
+                    </div>
+                    <div class='meta-stat-item'>
+                      <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: #F59E0B;'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>
+                      <span>★ 4.9 (10 Reviews)</span>
+                    </div>
+                  </div>
+
+                  <a class='btn btn-secondary' href='https://play.google.com/store/apps/details?id=com.sketchpro.color' rel='noopener noreferrer' target='_blank'>
+                    <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px;'><polygon points='5 3 19 12 5 21 5 3'/></svg>
+                    <span>Google Play</span>
+                  </a>
                 </div>
-                <div>
-                  <h4 class='app-title-md'>SketchPro Color</h4>
-                  <span class='app-cat-tag'>Art &amp; Design</span>
+
+                <div class='mockup-container'>
+                  <div class='phone-mockup phone-mockup-sm'>
+                    <div class='phone-screen'>
+                      <img alt='SketchPro Color App Screenshot' class='phone-screen-img' height='390' loading='lazy' src='https://play-lh.googleusercontent.com/EtA0MUoQh76Lh0_HFMPM1qIYTnhcf15aC-ZQ1_0XkyF07B4xUZmQygYXwu_sQHjDMa2mvLmAmKE6_Qn4rgFA=w1052-h592' width='180' />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p class='card-desc'>Create, explore and manage color palettes, mixed colors and smooth gradients.</p>
-
-              <div class='card-meta'>
-                <div class='meta-stat-item'>
-                  <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px; color: var(--color-emerald);'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' x2='12' y1='15' y2='3'/></svg>
-                  <span>453+ Downloads</span>
-                </div>
-                <span>Not rated yet</span>
-              </div>
-
-              <a class='btn btn-secondary' href='https://play.google.com/store/apps/details?id=com.sketchpro.color' rel='noopener noreferrer' target='_blank'>
-                <svg class='icon-inline' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' style='width: 16px; height: 16px;'><polygon points='5 3 19 12 5 21 5 3'/></svg>
-                <span>Google Play</span>
-              </a>
             </div>
           </div>
         </div>
@@ -1628,10 +1665,16 @@
           <div class='footer-grid'>
             <!-- LEFT: Brand Logo & Tagline -->
             <div class='footer-brand'>
-              <a class='navbar-logo' href='#home'>
-                <img alt='SynFusion' class='brand-logo-img' height='38' loading='lazy' src='https://i.postimg.cc/7PNN0DMg/file-000000006e788243a3aaf94a91b6f9db.png' width='160' />
+              <a class='navbar-logo' href='#home' style='gap: 16px;'>
+                <div class='brand-logo-frame brand-logo-frame-footer'>
+                  <img alt='SynFusion Logo' class='brand-logo-img' height='72' loading='lazy' src='https://i.postimg.cc/7PNN0DMg/file-000000006e788243a3aaf94a91b6f9db.png' width='72' />
+                </div>
+                <div>
+                  <span style='font-size: 1.4rem; font-weight: 850; letter-spacing: -0.02em; color: var(--color-text); display: block;'>SynFusion</span>
+                  <span style='font-size: 0.75rem; font-weight: 800; color: var(--color-emerald); letter-spacing: 0.08em; text-transform: uppercase;'>PRODUCT STUDIO</span>
+                </div>
               </a>
-              <p class='footer-slogan'>Building useful apps for the digital world.</p>
+              <p class='footer-slogan'>Building simple, modern, and useful apps for the digital world.</p>
             </div>
 
             <!-- CENTER: Navigation / Apps -->
